@@ -6,6 +6,11 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour{
     private NavMeshAgent navMeshAgent;
     public Transform Player;
+    [SerializeField] GameManager gameManager;
+    
+    void awake(){
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     // Start is called before the first frame update
     void Start(){
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -14,6 +19,12 @@ public class EnemyMovement : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         navMeshAgent.SetDestination(Player.position);
+    }
+    
+    void OnTriggerEnter(Collider other){
+        if(other.tag == "Player"){
+            gameManager.EndGame();
+        }
     }
 }
 
