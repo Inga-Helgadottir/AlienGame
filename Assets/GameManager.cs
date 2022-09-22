@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;  
 
 public class GameManager : MonoBehaviour{
     public GameObject[] collectables;
@@ -27,6 +28,10 @@ public class GameManager : MonoBehaviour{
 
     }
 
+    public void showScore(){
+        scoreText.gameObject.SetActive(true);
+    }
+
     public void UpdateScore(int scoreToAdd){
         score += scoreToAdd;
         scoreText.text = "Score: " + score + "/" + howManyCollectables;
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour{
     public void EndGame(){
         if(gameHasEnded == false){
             gameHasEnded = true;
+            SceneManager.LoadScene("GameOverScreenMenu");
             Application.Quit();
             // Invoke("Restart", 2f);
         }
@@ -45,6 +51,5 @@ public class GameManager : MonoBehaviour{
 
     void Restart(){
         gameHasEnded = false;
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
