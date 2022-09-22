@@ -7,7 +7,6 @@ public class collectablesBehaviour : MonoBehaviour{
     [SerializeField] GameManager gameManager;
     public GameObject collectable;
 
-    //gets called b4 start
     void awake(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }

@@ -10,14 +10,15 @@ public class StartGame : MonoBehaviour{
     public GameObject gameOverMenu;  
     [SerializeField] GameManager gameManager;
     
-    void awake(){
+    void start(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.showScore();
+        gameManager.showScore(false);
     }
 
     public void PlayGame(){
         SceneManager.LoadScene("Level1");
         HideMenu();
+        gameManager.showScore(true);
     }
 
     public void HideMenu(){

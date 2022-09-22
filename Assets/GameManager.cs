@@ -28,14 +28,14 @@ public class GameManager : MonoBehaviour{
 
     }
 
-    public void showScore(){
-        scoreText.gameObject.SetActive(true);
+    public void showScore(bool showText){
+        scoreText.gameObject.SetActive(showText);
     }
 
     public void UpdateScore(int scoreToAdd){
         score += scoreToAdd;
         scoreText.text = "Score: " + score + "/" + howManyCollectables;
-        if(score == howManyCollectables){
+        if(score == howManyCollectables && scoreToAdd != 0){
             EndGame();
         }
     }
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour{
             gameHasEnded = true;
             SceneManager.LoadScene("GameOverScreenMenu");
             Application.Quit();
-            // Invoke("Restart", 2f);
         }
     }
 
