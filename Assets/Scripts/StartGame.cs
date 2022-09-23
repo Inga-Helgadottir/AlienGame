@@ -6,22 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour{
 
-    public GameObject startMenu;
-    public GameObject gameOverMenu;  
+    public GameObject menu;  
     [SerializeField] GameManager gameManager;
     
     void start(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.showScore(false);
+        // gameManager.showScore(false);
     }
 
     public void PlayGame(){
         SceneManager.LoadScene("Level1");
         HideMenu();
-        gameManager.showScore(true);
+        // gameManager.showScore(true);
     }
 
     public void HideMenu(){
-        startMenu.SetActive(false);
+        menu.SetActive(false);
     }
 }

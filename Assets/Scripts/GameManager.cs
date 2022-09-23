@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour{
     public GameObject[] collectables;
     public TextMeshProUGUI scoreText;
-    private int score;
+    public int score;
     private int howManyCollectables;
     bool gameHasEnded = false;
     
@@ -25,12 +25,11 @@ public class GameManager : MonoBehaviour{
             howManyCollectables = GameObject.FindGameObjectsWithTag("Collectable").Length;
             UpdateScore(0);
         }
-
     }
 
-    public void showScore(bool showText){
-        scoreText.gameObject.SetActive(showText);
-    }
+    // public void showScore(bool showText){
+    //     scoreText.gameObject.SetActive(showText);
+    // }
 
     public void UpdateScore(int scoreToAdd){
         score += scoreToAdd;
@@ -38,6 +37,10 @@ public class GameManager : MonoBehaviour{
         if(score == howManyCollectables && scoreToAdd != 0){
             EndGame();
         }
+    }
+
+    public void resetScore(){
+        score = 0;
     }
 
     public void EndGame(){
