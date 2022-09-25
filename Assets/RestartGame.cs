@@ -11,14 +11,10 @@ public class RestartGame : MonoBehaviour{
     
     void start(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // gameManager.showScore(false);
     }
 
     public void restartGame(){
-        Debug.Log("checking");
         menu.SetActive(false); 
-        // gameManager.resetScore();
-        // gameManager.showScore(true);
         SceneManager.LoadScene("Level1");
     }
 }

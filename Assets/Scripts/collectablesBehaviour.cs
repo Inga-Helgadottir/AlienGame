@@ -7,14 +7,14 @@ public class collectablesBehaviour : MonoBehaviour{
     [SerializeField] GameManager gameManager;
     public GameObject collectable;
 
-    void awake(){
+    void start(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void OnTriggerEnter(Collider other){
         if(other.tag == "Player"){
-            Destroy(collectable);
             gameManager.UpdateScore(1);
+            Destroy(collectable);
         }
     }
 }
