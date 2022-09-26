@@ -5,7 +5,7 @@ using UnityEngine;
 public class EndGame : MonoBehaviour{
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown("escape")){
             Application.Quit();
         }
     }
