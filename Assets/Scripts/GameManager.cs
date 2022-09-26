@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;  
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour{
     public GameObject[] collectables;
     public TextMeshProUGUI scoreText;
-    private int score;
+    private int score = 0;
     private int howManyCollectables;
-    bool gameHasEnded = false;
-    
+    public static bool gameHasEnded = false;
+    public static string winnerLoserText = "";
+    public AudioSource alienSound;
+
     void awake(){
-        score = 0;
+        DontDestroyOnLoad(this);
     }
 
     void start(){
@@ -31,22 +34,26 @@ public class GameManager : MonoBehaviour{
         score += scoreToAdd;
         scoreText.text = "Score: " + score + "/" + howManyCollectables;
         if(score == howManyCollectables && scoreToAdd != 0){
-            EndGame();
+            EndGame(true);
         }
     }
 
-    public void resetScore(){
-        score = 0;
-    }
-
-    public void EndGame(){
+    public void EndGame(bool winLose){//true = won, false = lost
         if(gameHasEnded == false){
             gameHasEnded = true;
-            SceneManager.LoadScene("GameOverScreenMenu");
+            alienSound.Pause();
+            if(winLose){
+                winnerLoserText = "You won!";
+            }else{
+                winnerLoserText = "You lost!";
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1, LoadSceneMode.Additive);
         }
     }
 
-    void Restart(){
+    public void Restart(){
         gameHasEnded = false;
+        winnerLoserText = "";
+        score = 0;
     }
 }
