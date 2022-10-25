@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour{
         score += scoreToAdd;
         scoreText.text = "Score: " + score + "/" + howManyCollectables;
         if(score == howManyCollectables && scoreToAdd != 0){
-            EndGame(true);
+            EndGame(true);//true for you won
         }
     }
 
