@@ -18,11 +18,14 @@ public class PlayerCollision : MonoBehaviour{
     }
     
     void OnTriggerEnter(Collider collider){
+        Debug.Log("collider");
+        Debug.Log(collider);
+        Debug.Log(collider.tag);
         if(collider.tag == "Enemy"){
             playerHealth -= 10;
             healthText.text = "Health: " + playerHealth;
             alienCrashSound.Play();
-            StartCoroutine(cameraShake.Shake(.15f, .4f));
+            StartCoroutine(cameraShake.Shake(.1f, .1f));
             if(playerHealth == 0){
                 gameManager.EndGame(false);
             }
