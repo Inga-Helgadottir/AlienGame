@@ -10,6 +10,7 @@ public class PlayerCollision : MonoBehaviour{
     public TextMeshProUGUI healthText;
     public AudioSource alienCrashSound;
     [SerializeField] GameManager gameManager;
+    public CameraShake cameraShake;
 
     void awake(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -21,6 +22,7 @@ public class PlayerCollision : MonoBehaviour{
             playerHealth -= 10;
             healthText.text = "Health: " + playerHealth;
             alienCrashSound.Play();
+            StartCoroutine(cameraShake.Shake(.15f, .4f));
             if(playerHealth == 0){
                 gameManager.EndGame(false);
             }
