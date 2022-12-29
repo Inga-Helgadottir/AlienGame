@@ -15,6 +15,9 @@ public class PlayerCollision : MonoBehaviour{
     public CameraShake cameraShake;
     public System.Random ran = new System.Random();
     public GameObject healthHelper;
+    Vector3 pos;
+    public float height;
+    RaycastHit hit;
 
     void awake(){
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -44,16 +47,27 @@ public class PlayerCollision : MonoBehaviour{
     }
 
     public void handleHealthHelperCollision(){
-        int xMin = 777;
-        int xMax = 1715;
+        int xMin = 798;
+        int xMax = 1679;
         
-        int zMin = 105;
-        int zMax = 1475;
+        int zMin = 39;
+        int zMax = 1492;
 
-        int x = ran.Next(xMin, xMax); 
-        int z = ran.Next(zMin, zMax); 
+        int thex = ran.Next(xMin, xMax); 
+        int thez = ran.Next(zMin, zMax); 
 
-        healthHelper.transform.position = new Vector3((float)x, 1.6f, (float)z);
+        pos.x = thex;
+        pos.z = thez;
+
+        Vector3 signPosition = new Vector3(thex, 0, thez);
+        pos.y = Terrain.activeTerrain.SampleHeight(signPosition) + Terrain.activeTerrain.GetPosition().y; 
+        pos.y += 1.6f; 
+
+        healthHelper.transform.position = pos;
+        Debug.Log("here, x, y, z");
+        Debug.Log(pos.x);
+        Debug.Log(pos.y);
+        Debug.Log(pos.z);
         updateHealth("up");
     }
 }
