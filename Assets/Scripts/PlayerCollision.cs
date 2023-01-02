@@ -66,10 +66,7 @@ public class PlayerCollision : MonoBehaviour{
         pos.y += 1.6f; 
 
         healthHelper.transform.position = pos;
-        Debug.Log("here, x, y, z");
-        Debug.Log(pos.x);
-        Debug.Log(pos.y);
-        Debug.Log(pos.z);
+        
         updateHealth("up");
     }
 }
