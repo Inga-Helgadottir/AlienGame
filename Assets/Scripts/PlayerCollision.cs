@@ -11,6 +11,7 @@ public class PlayerCollision : MonoBehaviour{
     public int playerHealth;
     public TextMeshProUGUI healthText;
     public AudioSource alienCrashSound;
+    public AudioSource healthHelperSound;
     [SerializeField] GameManager gameManager;
     public CameraShake cameraShake;
     public System.Random ran = new System.Random();
@@ -33,6 +34,7 @@ public class PlayerCollision : MonoBehaviour{
                 gameManager.EndGame(false);
             }
         }else if(collider.tag == "HealthHelper"){
+            healthHelperSound.Play();
             handleHealthHelperCollision();
         }
     }
