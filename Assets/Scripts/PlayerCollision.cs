@@ -24,17 +24,6 @@ public class PlayerCollision : MonoBehaviour{
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         healthText.text = "Health: " + 30;
     }
-
-    void Update(){
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log("Pressed primary button.");
-
-        if (Input.GetMouseButtonDown(1))
-            Debug.Log("Pressed secondary button.");
-
-        if (Input.GetMouseButtonDown(2))
-            Debug.Log("Pressed middle click.");
-    }
     
     void OnTriggerEnter(Collider collider){
         if(collider.tag == "Enemy"){
@@ -45,8 +34,8 @@ public class PlayerCollision : MonoBehaviour{
                 gameManager.EndGame(false);
             }
         }else if(collider.tag == "HealthHelper"){
-            healthHelperSound.Play();
             handleHealthHelperCollision();
+            healthHelperSound.Play();
         }
     }
 

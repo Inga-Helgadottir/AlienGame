@@ -31,35 +31,18 @@ public class RayCastShoot : MonoBehaviour{
             laserLine.SetPosition(0, gunEnd.position);
 
             if(Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange)){
+                
                 laserLine.SetPosition(1, hit.point);
 
-                // Shootable health = hit.collider.GetComponent<Shootable>();
                 string hitName = hit.collider.transform.parent.gameObject.name;
-                Debug.Log("hitName");
-                Debug.Log(hitName);
                 GameObject hitObject = hit.collider.transform.parent.gameObject;
-                Debug.Log("herer-----------------");
-                // Debug.Log(hit);
-                Debug.Log(hit.collider.transform.parent.gameObject);
-                Debug.Log("herer-----------------");
 
                 if(hitName == "Alien" || hitName == "secondAlien Variant"){
-                    Debug.Log("-------------*******************************");
-                    Debug.Log(hitObject);
-                    Shootable test = hitObject.GetComponent<Shootable>();
-                    if(test != null){
-                        Debug.Log("test");
-                        Debug.Log(test);
-                        test.Damage(gunDamage);
+                    Shootable shootableObject = hitObject.GetComponent<Shootable>();
+                    if(shootableObject != null){
+                        shootableObject.Damage(gunDamage);
                     }
-                    // hitObject.Damage(gunDamage);
                 }
-                // if(health != null){
-                //     health.Damage(gunDamage);
-                // }
-
-                // Debug.Log("hit.rigidbody");
-                // Debug.Log(hit.rigidbody);
                 if(hit.rigidbody != null){
                     hit.rigidbody.AddForce(-hit.normal * hitForce);
                 }
