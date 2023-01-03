@@ -7,6 +7,7 @@ public class showHideMap : MonoBehaviour{
 
     public GameObject miniMap;
     public GameObject miniMapBorder;
+    public bool mapVisablility = true;
 
     void awake(){
         miniMap.SetActive(false);
@@ -15,9 +16,12 @@ public class showHideMap : MonoBehaviour{
 
     void Update() {
         if(SceneManager.GetActiveScene().name == "Level1"){
-            miniMap.SetActive(true);
-            miniMapBorder.SetActive(true);
-
+            if(Input.GetKeyDown("m")){
+                mapVisablility = !mapVisablility;
+        
+                miniMap.SetActive(mapVisablility);
+                miniMapBorder.SetActive(mapVisablility);
+            }
         }else{
             miniMap.SetActive(false);
             miniMapBorder.SetActive(false);
