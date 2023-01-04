@@ -14,10 +14,6 @@ public class GameManager : MonoBehaviour{
     public static string winnerLoserText = "";
     public AudioSource alienSound;
 
-    void awake(){
-        DontDestroyOnLoad(this);
-    }
-
     void start(){
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
         howManyCollectables = 0;

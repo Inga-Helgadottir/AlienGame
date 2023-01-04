@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour{
 
     public GameObject menu;   
-    [SerializeField] GameManager gameManager;
-    
-    void start(){
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    public static bool GameIsPaused = false;
+
+    void Awake(){
+        Time.timeScale = 0f;
     }
 
     public void PlayGame(){
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level1");
         HideMenu();
     }
