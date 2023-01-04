@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class Shootable : MonoBehaviour{
     
     public void Damage(int damageAmount){
         currentHealth-= damageAmount;
+
         if(currentHealth <= 0){
-            // remember to change to ragdoll later
             gameObject.SetActive(false);
         }
     }
